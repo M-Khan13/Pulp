@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pulp. — wellness that's actually fun.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8EC;
+    --ink: #0E0E0E;
+    --paper: #F5EAD4;
+    --riot: #FF5B1F;       /* orange */
+    --hush: #B9A7FF;       /* lavender */
+    --glow: #FF3D8A;       /* hot pink */
+    --bounce: #C8FF3D;     /* electric lime */
+    --cream: #FFEFD2;
+    --shadow: 6px 6px 0 var(--ink);
+    --shadow-sm: 3px 3px 0 var(--ink);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: default;
+    /* paper grain */
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(14,14,14,0.06) 1px, transparent 0);
+    background-size: 14px 14px;
+  }
+
+  /* ============ NAV ============ */
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px;
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  nav.top .logo {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+  nav.top .logo .dot { color: var(--riot); }
+  nav.top .links { display: flex; gap: 28px; }
+  nav.top .links a {
+    color: var(--ink); text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color .2s;
+  }
+  nav.top .links a:hover { color: var(--riot); }
+  nav.top .links a::after {
+    content:''; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background: var(--riot); transition: width .25s ease;
+  }
+  nav.top .links a:hover::after { width: 100%; }
+  nav.top .cta {
+    background: var(--ink); color: var(--bg);
+    padding: 10px 18px; border: 2px solid var(--ink);
+    text-decoration: none; font-weight: 600;
+    transition: all .15s;
+  }
+  nav.top .cta:hover {
+    background: var(--riot); color: var(--ink);
+    transform: translate(-2px,-2px); box-shadow: var(--shadow-sm);
+  }
+  @media (max-width: 760px) { nav.top .links { display:none; } }
+
+  /* ============ MARQUEE ============ */
+  .marquee {
+    margin-top: 62px;
+    background: var(--ink);
+    color: var(--bg);
+    overflow: hidden;
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 40px;
+    white-space: nowrap;
+    animation: scroll 28s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .marquee-track span { display:flex; align-items:center; gap:40px; }
+  .marquee-track .star { color: var(--bounce); font-size: 18px; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    padding: 80px 40px 60px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 9vw, 148px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+  }
+  .hero h1 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 .swatch {
+    display: inline-block;
+    background: var(--riot);
+    color: var(--bg);
+    padding: 0 14px;
+    transform: rotate(-2deg);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+  .hero .sub {
+    margin-top: 28px;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+  .hero .ctas {
+    margin-top: 32px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    border: 2px solid var(--ink);
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    background: var(--bg);
+    transition: all .15s ease;
+    cursor: pointer;
+  }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn:hover { transform: translate(-3px,-3px); box-shadow: var(--shadow); }
+  .btn .arrow { transition: transform .2s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* hero bottle composition */
+  .hero-art {
+    position: relative;
+    height: 560px;
+  }
+  .bottle {
+    position: absolute;
+    width: 180px; height: 360px;
+    border: 2px solid var(--ink);
+    border-radius: 16px 16px 60px 60px / 16px 16px 30px 30px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: space-between;
+    padding: 30px 16px 28px;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .bottle::before {
+    content:''; position:absolute; top:-14px; left:50%;
+    transform: translateX(-50%);
+    width: 70px; height: 22px; background: var(--ink); border-radius: 4px;
+  }
+  .bottle::after {
+    /* shine */
+    content:''; position:absolute; top:30px; left:14px;
+    width: 18px; height: 130px;
+    background: rgba(255,255,255,0.45);
+    border-radius: 12px;
+    transform: rotate(-2deg);
+  }
+  .bottle .lbl {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 38px; line-height: 1;
+    color: var(--ink);
+  }
+  .bottle .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--ink); color: var(--bg);
+    padding: 4px 8px;
+  }
+  .b1 { background: var(--riot); left: 50px;  top: 60px;  transform: rotate(-8deg); }
+  .b2 { background: var(--glow); left: 200px; top: 30px;  transform: rotate(4deg); z-index:2; }
+  .b3 { background: var(--bounce); left: 350px; top: 100px; transform: rotate(-3deg); }
+  .b1:hover { transform: rotate(-10deg) translateY(-8px); }
+  .b2:hover { transform: rotate(2deg)  translateY(-8px); }
+  .b3:hover { transform: rotate(-5deg) translateY(-8px); }
+
+  /* floating stickers */
+  .sticker {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 8px 14px;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow-sm);
+    z-index: 5;
+  }
+  .stk-1 { top: 12%; right: 38%; background: var(--bounce); transform: rotate(-6deg); animation: bob 4s ease-in-out infinite; }
+  .stk-2 { bottom: 18%; left: 6%; background: var(--hush); transform: rotate(5deg); animation: bob 5s ease-in-out infinite reverse; }
+  .stk-3 { top: 48%; right: 4%; background: var(--ink); color: var(--bg); transform: rotate(8deg); animation: bob 4.5s ease-in-out infinite; }
+
+  @keyframes bob {
+    0%,100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50%     { transform: translateY(-10px) rotate(var(--r, 0deg)); }
+  }
+  .stk-1 { --r: -6deg; }
+  .stk-2 { --r: 5deg; }
+  .stk-3 { --r: 8deg; }
+
+  /* squiggle */
+  .squiggle {
+    position: absolute;
+    width: 120px; height: 40px;
+    top: 22%; left: 38%;
+    z-index: 1;
+  }
+
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 24px; }
+    .hero-art { height: 460px; transform: scale(0.85); }
+  }
+
+  /* ============ TICKER STRIP ============ */
+  .strip {
+    background: var(--riot);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 0;
+    overflow: hidden;
+  }
+  .strip-track {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: scroll 22s linear infinite;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 42px;
+    color: var(--ink);
+  }
+  .strip-track span { display:flex; align-items:center; gap:60px; }
+  .strip-track .bullet {
+    width: 14px; height: 14px; background: var(--ink); border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* ============ PRODUCTS ============ */
+  .products {
+    padding: 100px 40px;
+    position: relative;
+  }
+  .section-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 40px; margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .section-head .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--ink); color: var(--bg);
+    padding: 6px 12px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+  .section-head h2 {
+    font-size: clamp(48px, 6vw, 92px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    max-width: 700px;
+  }
+  .section-head h2 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .section-head .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    max-width: 280px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 2px solid var(--ink);
+  }
+  .pcard {
+    border-right: 2px solid var(--ink);
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform .3s ease;
+    cursor: pointer;
+  }
+  .pcard:last-child { border-right: none; }
+  .pcard:hover { transform: translateY(-6px); }
+  .pcard.riot   { background: var(--riot); }
+  .pcard.hush   { background: var(--hush); }
+  .pcard.glow   { background: var(--glow); color: var(--bg); }
+  .pcard.bounce { background: var(--bounce); }
+  .pcard.glow .pcard-num,
+  .pcard.glow .pcard-mood { color: var(--bg); }
+  .pcard.glow .pcard-tag { background: var(--bg); color: var(--glow); }
+
+  .pcard-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .pcard-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-top: 8px;
+  }
+  .pcard-mood {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    margin-top: 6px;
+  }
+  .pcard-bottle {
+    margin: 24px auto;
+    width: 80px; height: 160px;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    border-radius: 8px 8px 30px 30px / 8px 8px 16px 16px;
+    position: relative;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .pcard-bottle::before {
+    content:''; position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+    width: 32px; height: 12px; background: var(--ink); border-radius: 2px;
+  }
+  .pcard-bottle .blbl {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .pcard-ings {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .pcard-ings .ing { display:flex; gap:8px; align-items:center; }
+  .pcard-ings .dot { width:6px; height:6px; background: var(--ink); border-radius: 50%; }
+  .pcard.glow .pcard-ings .dot { background: var(--bg); }
+
+  .pcard-tag {
+    position: absolute; top: 24px; right: 24px;
+    background: var(--ink); color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; padding: 4px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .pcard:nth-child(2) { border-right: none; }
+    .pcard:nth-child(1), .pcard:nth-child(2) { border-bottom: 2px solid var(--ink); }
+  }
+  @media (max-width: 560px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .pcard { border-right: none; border-bottom: 2px solid var(--ink); }
+    .pcard:last-child { border-bottom: none; }
+  }
+
+  /* ============ MANIFESTO ============ */
+  .manifesto {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto::before {
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,248,236,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+  .manifesto-inner {
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .manifesto .small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bounce);
+    margin-bottom: 28px;
+  }
+  .manifesto h2 {
+    font-size: clamp(40px, 5.5vw, 88px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .manifesto h2 .hl {
+    background: var(--riot);
+    color: var(--ink);
+    padding: 0 12px;
+    display: inline-block;
+    transform: rotate(-1deg);
+  }
+  .manifesto h2 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--glow);
+  }
+  .manifesto h2 .strike { text-decoration: line-through; opacity: 0.5; }
+  .manifesto h2 .underl {
+    border-bottom: 4px solid var(--bounce);
+    padding-bottom: 4px;
+  }
+
+  /* ============ STORY / VALUES ============ */
+  .story {
+    padding: 120px 40px;
+    background: var(--paper);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .story-grid .left h2 {
+    font-size: clamp(40px, 5vw, 76px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .story-grid .left h2 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .story-grid p {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .values {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .value {
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 24px 20px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+  .value .vnum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--riot);
+  }
+  .value h4 {
+    font-size: 22px;
+    margin-top: 8px;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  .value p {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .v1 { background: var(--bounce); }
+  .v2 { background: var(--glow); color: var(--bg); }
+  .v2 .vnum { color: var(--bg); }
+  .v3 { background: var(--hush); }
+  .v4 { background: var(--riot); color: var(--bg); }
+  .v4 .vnum { color: var(--bg); }
+
+  @media (max-width: 880px) {
+    .story-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* ============ COMMUNITY / SOCIAL ============ */
+  .community {
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .community-head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .community-head .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--ink); color: var(--bg);
+    padding: 6px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .community-head h2 {
+    font-size: clamp(40px, 6vw, 96px);
+    font-weight: 800;
+    margin-top: 20px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .community-head h2 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testi {
+    border: 2px solid var(--ink);
+    padding: 28px 24px;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: transform .2s ease;
+  }
+  .testi:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--ink); }
+  .testi:nth-child(1) { transform: rotate(-1.5deg); background: var(--cream); }
+  .testi:nth-child(2) { transform: rotate(0.8deg); }
+  .testi:nth-child(3) { transform: rotate(-0.8deg); background: var(--cream); }
+  .testi:nth-child(1):hover { transform: rotate(-1.5deg) translate(-4px,-4px); }
+  .testi:nth-child(2):hover { transform: rotate(0.8deg) translate(-4px,-4px); }
+  .testi:nth-child(3):hover { transform: rotate(-0.8deg) translate(-4px,-4px); }
+  .testi .stars { color: var(--riot); font-size: 18px; letter-spacing: 2px; }
+  .testi .quote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-top: 14px;
+    letter-spacing: -0.01em;
+  }
+  .testi .quote .ital { font-style: italic; }
+  .testi .who {
+    margin-top: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .testi .who .av {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--bounce);
+    border: 2px solid var(--ink);
+    display: grid; place-items: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .testi:nth-child(2) .av { background: var(--glow); color: var(--bg); }
+  .testi:nth-child(3) .av { background: var(--hush); }
+  .testi .who .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .testi .who .meta .h { font-weight: 700; }
+  .testi .who .meta .sub { opacity: 0.6; }
+  @media (max-width: 880px) {
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+
+  /* social stats */
+  .stats-row {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 2px solid var(--ink);
+    background: var(--bg);
+    max-width: 1200px;
+    margin-left: auto; margin-right: auto;
+    margin-top: 80px;
+  }
+  .stat {
+    padding: 32px 20px;
+    text-align: center;
+    border-right: 2px solid var(--ink);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat .num .ital { font-style: italic; }
+  .stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+  @media (max-width: 760px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 2px solid var(--ink); }
+  }
+
+  /* ============ NEWSLETTER / CTA ============ */
+  .cta-block {
+    background: var(--bounce);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-block h2 {
+    font-size: clamp(44px, 6vw, 96px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .cta-block h2 .ital {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .cta-block .sub {
+    margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .signup {
+    margin: 36px auto 0;
+    display: flex;
+    max-width: 520px;
+    border: 2px solid var(--ink);
+    background: var(--bg);
+    box-shadow: var(--shadow);
+  }
+  .signup input {
+    flex: 1;
+    border: none; outline: none;
+    padding: 16px 18px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 15px;
+    background: transparent;
+    color: var(--ink);
+  }
+  .signup button {
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    padding: 0 24px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .signup button:hover { background: var(--riot); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 40px 40px;
+  }
+  .foot-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+  .foot-logo {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 80px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+  .foot-logo .dot { color: var(--riot); }
+  .foot-tag {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+  .foot-col h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--bounce);
+    margin-bottom: 18px;
+  }
+  .foot-col a {
+    display: block;
+    color: var(--bg);
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: color .15s;
+  }
+  .foot-col a:hover { color: var(--riot); }
+  .foot-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,248,236,0.2);
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+  @media (max-width: 760px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .foot-bottom { flex-direction: column; gap: 12px; }
+  }
+
+  /* ============ SCROLL REVEALS ============ */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="logo">Pulp<span class="dot">.</span></div>
+  <div class="links">
+    <a href="#drinks">Drinks</a>
+    <a href="#story">Story</a>
+    <a href="#community">Community</a>
+    <a href="#shop">Shop</a>
+  </div>
+  <a href="#shop" class="cta">Get a Six-Pack →</a>
+</nav>
+
+<!-- TICKER -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>
+      <span>★ Wellness that's actually fun</span>
+      <span class="star">✦</span>
+      <span>No chalky powders</span>
+      <span class="star">✦</span>
+      <span>No wellness lectures</span>
+      <span class="star">✦</span>
+      <span>Just drinks for moods</span>
+      <span class="star">✦</span>
+      <span>Free shipping over $40</span>
+      <span class="star">✦</span>
+    </span>
+    <span>
+      <span>★ Wellness that's actually fun</span>
+      <span class="star">✦</span>
+      <span>No chalky powders</span>
+      <span class="star">✦</span>
+      <span>No wellness lectures</span>
+      <span class="star">✦</span>
+      <span>Just drinks for moods</span>
+      <span class="star">✦</span>
+      <span>Free shipping over $40</span>
+      <span class="star">✦</span>
+    </span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>
+      drink<br>
+      your <span class="ital">feelings</span>.<br>
+      <span class="swatch">not your vitamins.</span>
+    </h1>
+    <p class="sub">
+      Functional drinks built around moods, not lectures. Every can is loaded with adaptogens, electrolytes, and zero apologies. Pick how you want to feel — we built the rest.
+    </p>
+    <div class="ctas">
+      <a href="#drinks" class="btn primary">Shop the lineup <span class="arrow">→</span></a>
+      <a href="#story" class="btn">What is Pulp?</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <!-- squiggle -->
+    <svg class="squiggle" viewBox="0 0 120 40" fill="none">
+      <path d="M2 20 Q15 2, 30 20 T 60 20 T 90 20 T 118 20" stroke="#0E0E0E" stroke-width="3" fill="none"/>
+    </svg>
+
+    <div class="bottle b1">
+      <div class="tag">RIOT</div>
+      <div class="lbl">energy</div>
+      <div class="tag">12 FL OZ</div>
+    </div>
+    <div class="bottle b2">
+      <div class="tag">GLOW</div>
+      <div class="lbl">skin+gut</div>
+      <div class="tag">12 FL OZ</div>
+    </div>
+    <div class="bottle b3">
+      <div class="tag">BOUNCE</div>
+      <div class="lbl">recovery</div>
+      <div class="tag">12 FL OZ</div>
+    </div>
+
+    <div class="sticker stk-1">★ new drop</div>
+    <div class="sticker stk-2">no sugar crash</div>
+    <div class="sticker stk-3">made with mood ✦</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-track">
+    <span>
+      <span>energy</span><span class="bullet"></span>
+      <span>calm</span><span class="bullet"></span>
+      <span>glow</span><span class="bullet"></span>
+      <span>recovery</span><span class="bullet"></span>
+      <span>repeat</span><span class="bullet"></span>
+    </span>
+    <span>
+      <span>energy</span><span class="bullet"></span>
+      <span>calm</span><span class="bullet"></span>
+      <span>glow</span><span class="bullet"></span>
+      <span>recovery</span><span class="bullet"></span>
+      <span>repeat</span><span class="bullet"></span>
+    </span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="drinks">
+  <div class="section-head reveal">
+    <div>
+      <div class="label">/ 01 — the lineup</div>
+      <h2>four moods.<br>four <span class="ital">drinks.</span><br>zero overlap.</h2>
+    </div>
+    <div class="meta">
+      Each Pulp is engineered for a specific mood — not a marketing claim. Real ingredients, dosed properly, tastes like something you actually want to drink.
+    </div>
+  </div>
+
+  <div class="product-grid reveal">
+    <div class="pcard riot">
+      <div class="pcard-tag">★ best seller</div>
+      <div>
+        <div class="pcard-num">N°01</div>
+        <div class="pcard-name">RIOT</div>
+        <div class="pcard-mood">for being unhinged</div>
+      </div>
+      <div class="pcard-bottle"><div class="blbl">riot</div></div>
+      <div class="pcard-ings">
+        <div class="ing"><span class="dot"></span>yerba mate</div>
+        <div class="ing"><span class="dot"></span>guarana</div>
+        <div class="ing"><span class="dot"></span>L-theanine</div>
+        <div class="ing"><span class="dot"></span>blood orange</div>
+      </div>
+    </div>
+
+    <div class="pcard hush">
+      <div class="pcard-tag">new</div>
+      <div>
+        <div class="pcard-num">N°02</div>
+        <div class="pcard-name">HUSH</div>
+        <div class="pcard-mood">for crashing out</div>
+      </div>
+      <div class="pcard-bottle"><div class="blbl">hush</div></div>
+      <div class="pcard-ings">
+        <div class="ing"><span class="dot"></span>ashwagandha</div>
+        <div class="ing"><span class="dot"></span>magnesium</div>
+        <div class="ing"><span class="dot"></span>chamomile</div>
+        <div class="ing"><span class="dot"></span>lavender</div>
+      </div>
+    </div>
+
+    <div class="pcard glow">
+      <div class="pcard-tag">fan fav</div>
+      <div>
+        <div class="pcard-num">N°03</div>
+        <div class="pcard-name">GLOW</div>
+        <div class="pcard-mood">for looking unbothered</div>
+      </div>
+      <div class="pcard-bottle"><div class="blbl">glow</div></div>
+      <div class="pcard-ings">
+        <div class="ing"><span class="dot"></span>marine collagen</div>
+        <div class="ing"><span class="dot"></span>prebiotics</div>
+        <div class="ing"><span class="dot"></span>hibiscus</div>
+        <div class="ing"><span class="dot"></span>vitamin C</div>
+      </div>
+    </div>
+
+    <div class="pcard bounce">
+      <div class="pcard-tag">★ new</div>
+      <div>
+        <div class="pcard-num">N°04</div>
+        <div class="pcard-name">BOUNCE</div>
+        <div class="pcard-mood">for the day after</div>
+      </div>
+      <div class="pcard-bottle"><div class="blbl">bounce</div></div>
+      <div class="pcard-ings">
+        <div class="ing"><span class="dot"></span>electrolytes</div>
+        <div class="ing"><span class="dot"></span>elderberry</div>
+        <div class="ing"><span class="dot"></span>zinc</div>
+        <div class="ing"><span class="dot"></span>cucumber-lime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner reveal">
+    <div class="small">/ manifesto — read it twice</div>
+    <h2>
+      wellness shouldn't <span class="strike">whisper</span><br>
+      it should <span class="hl">YELL</span>.<br>
+      no <span class="ital">beige</span>. no chalky.<br>
+      no <span class="underl">$14 lectures</span>.<br>
+      just drinks that work,<br>
+      and <span class="ital">look good</span> in your hand.
+    </h2>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-grid">
+    <div class="left reveal">
+      <div class="label" style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--ink);color:var(--paper);padding:6px 12px;text-transform:uppercase;letter-spacing:0.15em;display:inline-block;margin-bottom:20px;">/ 02 — the origin</div>
+      <h2>built by people who got <span class="ital">tired</span> of being talked down to.</h2>
+      <p>
+        Pulp started in a Brooklyn apartment between three friends, four blenders, and one shared frustration: every "wellness" drink on the shelf was either a glorified juice or a $9 lecture in a beige can.
+      </p>
+      <p>
+        So we made what we wanted. Real adaptogens, properly dosed. Real flavors, not "earthy notes." And bottles that look like something you'd actually post.
+      </p>
+    </div>
+    <div class="values reveal">
+      <div class="value v1">
+        <div class="vnum">/ 01</div>
+        <h4>Function over fluff</h4>
+        <p>Every ingredient does something. If it doesn't, it's not in the bottle.</p>
+      </div>
+      <div class="value v2">
+        <div class="vnum">/ 02</div>
+        <h4>Loud on purpose</h4>
+        <p>Wellness has been quiet for too long. We're done whispering.</p>
+      </div>
+      <div class="value v3">
+        <div class="vnum">/ 03</div>
+        <h4>Mood-first</h4>
+        <p>You don't need a vitamin. You need to feel a way. We start there.</p>
+      </div>
+      <div class="value v4">
+        <div class="vnum">/ 04</div>
+        <h4>Honest pricing</h4>
+        <p>$4.50 a bottle. Not $14. Wellness shouldn't cost rent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="community-head reveal">
+    <div class="label">/ 03 — the cult</div>
+    <h2>30k people drink <span class="ital">their feelings</span>.<br>here's what they say.</h2>
+  </div>
+
+  <div class="testi-grid reveal">
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"<span class="ital">Riot</span> hits like an espresso but I don't feel like I'm vibrating. Replaced my pre-workout entirely."</div>
+      <div class="who">
+        <div class="av">MJ</div>
+        <div class="meta">
+          <div class="h">Maya J.</div>
+          <div class="sub">Verified buyer · LA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"I bought Hush as a joke for my 3am doomscroll problem and now I sleep like a Victorian child. <span class="ital">Genuinely.</span>"</div>
+      <div class="who">
+        <div class="av">DK</div>
+        <div class="meta">
+          <div class="h">Devon K.</div>
+          <div class="sub">Verified buyer · NYC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"Finally a wellness drink that doesn't look like it belongs in a <span class="ital">spa lobby</span>. The bottles alone are a personality."</div>
+      <div class="who">
+        <div class="av">AR</div>
+        <div class="meta">
+          <div class="h">Ari R.</div>
+          <div class="sub">Verified buyer · Austin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row reveal">
+    <div class="stat">
+      <div class="num">30<span class="ital">k+</span></div>
+      <div class="lbl">cult members</div>
+    </div>
+    <div class="stat">
+      <div class="num">4.<span class="ital">9</span></div>
+      <div class="lbl">avg. rating</div>
+    </div>
+    <div class="stat">
+      <div class="num">1<span class="ital">M+</span></div>
+      <div class="lbl">bottles shipped</div>
+    </div>
+    <div class="stat">
+      <div class="num">0</div>
+      <div class="lbl">beige labels</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block" id="shop">
+  <h2>ready to <span class="ital">drink your</span><br>feelings?</h2>
+  <div class="sub">/ join the cult — first drop ships free</div>
+  <div class="signup">
+    <input type="email" placeholder="your@email.com" />
+    <button onclick="alert('You\'re in. Welcome to Pulp.')">Sign me up →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">Pulp<span class="dot">.</span></div>
+      <div class="foot-tag">wellness that's actually fun.</div>
+    </div>
+    <div class="foot-col">
+      <h5>Shop</h5>
+      <a href="#">Riot</a>
+      <a href="#">Hush</a>
+      <a href="#">Glow</a>
+      <a href="#">Bounce</a>
+      <a href="#">Variety pack</a>
+    </div>
+    <div class="foot-col">
+      <h5>About</h5>
+      <a href="#">Our story</a>
+      <a href="#">Ingredients</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="foot-col">
+      <h5>Follow</h5>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Substack</a>
+      <a href="#">Newsletter</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 Pulp Beverages, Inc.</div>
+    <div>Made loud in Brooklyn ★</div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
